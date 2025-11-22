@@ -13,8 +13,7 @@ class Database:
 
 
     def load_model(self):
-        
-        with open("database/lgbm_ehtirom.pkl", "rb") as f:
+        with open("models/lgbm_ehtirom.pkl", "rb") as f:
             model = pickle.load(f)
         return model
 
