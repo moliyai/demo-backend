@@ -13,7 +13,7 @@ class Database:
 
     def get_model_path(self):
         demo_root = Path(__file__).resolve().parent.parent 
-        model_path = demo_root/config['database']['path']/"lgbm_ehtirom.pkl"
+        model_path = demo_root / config['database']['path'] / "lgbm_ehtirom.pkl"
 
         if not model_path.exists():
             raise FileNotFoundError(f"Model file not found at {model_path}")
