@@ -1,0 +1,10 @@
+fastapi
+pandas
+numpy
+uvicorn
+hypercorn
+lightgbm
+requests
+pyyaml
+scikit-learn
+python-multipart

@@ -1,0 +1,10 @@
+services:
+  demo:
+    build:
+      context: .
+    ports:
+      - "9011:9011"
+    restart: always
+    network_mode: "host"
+    volumes:
+      - /data/uploads:/app/database
