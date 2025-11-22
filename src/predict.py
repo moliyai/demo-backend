@@ -19,6 +19,7 @@ class Predictor:
 
 
     def run(self, input_data: dict):
+
         df = pd.DataFrame([input_data])
         date_birth = df.get('date_birth')[0]
     
