@@ -63,7 +63,7 @@ class Predictor:
         return {
             "prediction": status,
             "good_prob": good_prob,
-            "bad_prob%": bad_prob,
+            "bad_prob": bad_prob,
         }
 
 predictor = Predictor()
