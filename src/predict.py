@@ -8,7 +8,7 @@ class Predictor:
     def __init__(self):
         self.model = database.model
         self.user_input_csv = USER_INPUT_CSV
-        self.threshold = 15
+        self.threshold = 55
 
         self.shaped_bread_prices = price_config["prices"]["shaped_bread"]
         self.cottonseed_oil_prices = price_config["prices"]["cottonseed_oil"]
