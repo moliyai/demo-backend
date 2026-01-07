@@ -5,6 +5,7 @@ import pickle
 config = Config("configs/main.yaml").read()
 price_config = Config("configs/prices.yaml").read()
 model_config = Config("configs/model.yaml").read()
+shap_config = Config("configs/shap.yaml").read()
 USER_INPUT_CSV = config["user_predictions_path"]["path"]
 
 class Database:

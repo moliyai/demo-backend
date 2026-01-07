@@ -1,7 +1,9 @@
 import os
 from datetime import datetime, date
 import pandas as pd
-from src.db import database, price_config, model_config, USER_INPUT_CSV
+from src.db import database, price_config, model_config, USER_INPUT_CSV, shap_config
+from src.utils.shap import generate_shap_waterfall
+
 
 
 class Predictor:
@@ -18,7 +20,14 @@ class Predictor:
         self.categorical_cols = model_config["model"]["categorical_cols"]
 
 
-    def run(self, input_data: dict):
+    def run(self, input_data: dict, language: str):
+        lang = language if language in shap_config else "en"
+        shap_lang_cfg = shap_config[lang]
+
+        feature_display_names = shap_lang_cfg["feature_display_names"]
+        hidden_features = shap_lang_cfg["hidden_features"]
+        texts = shap_lang_cfg["texts"]
+
 
         df = pd.DataFrame([input_data])
         date_birth = df.get('date_birth')[0]
@@ -60,10 +69,25 @@ class Predictor:
         else:
             df.to_csv(self.user_input_csv, mode='a', header=False, index=False)
 
+
+        shap_result = generate_shap_waterfall(
+            model=self.model,
+            input_df=X,
+            feature_cols=self.feature_cols,
+            feature_display_names = feature_display_names,
+            hidden_features = hidden_features,
+            model_type="lgbm",
+            input_data=input_data,
+            texts = texts,
+        ) 
+
         return {
             "prediction": status,
             "good_prob": good_prob,
             "bad_prob": bad_prob,
+            "imageUrl": shap_result["shap_image_url"],
+            "explanation": shap_result["explanation_text"],
+
         }
 
 predictor = Predictor()

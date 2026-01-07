@@ -8,3 +8,5 @@ requests
 pyyaml
 scikit-learn
 python-multipart
+shap
+matplotlib

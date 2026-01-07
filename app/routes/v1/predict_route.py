@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Form, Request
+from fastapi import APIRouter, Form, Request, Header
+from typing import Literal
 from app.controllers.v1.credit_scoring import CreditScoring
 
 router = APIRouter()
@@ -7,6 +8,12 @@ router = APIRouter()
 @router.post("/predict")
 async def predict(
     request: Request,
+
+    x_demo_language: Literal["uz", "ru", "en"] = Header(
+        default="en",
+        alias="x-demo-app-language"
+    ),
+
     marital_status: str = Form(...),
     date_birth: str = Form(...),
     gender: str = Form(...),
@@ -21,6 +28,7 @@ async def predict(
     cycle: int = Form(...),
     loan_purpose: str = Form(...),
 ):
+    request.state.language = x_demo_language
 
     payload = {
         "marital_status": marital_status,
