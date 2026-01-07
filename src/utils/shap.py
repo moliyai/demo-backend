@@ -83,7 +83,7 @@ def generate_shap_waterfall(
 
     #save image
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    shap_dir = os.path.abspath(os.path.join(base_dir, "..", "..", "database", "shap"))
+    shap_dir = os.path.abspath(os.path.join(base_dir, "..", "..", "uploads", "shap"))
     os.makedirs(shap_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -94,7 +94,7 @@ def generate_shap_waterfall(
     with open(img_path, "wb") as f:
         f.write(base64.b64decode(img_base64))
 
-    shap_image_url = f"https://demo.moliy.ai/database/shap/{img_filename}"
+    shap_image_url = f"https://demo.moliy.ai/uploads/shap/{img_filename}"
 
 
     impacts = []

@@ -8,3 +8,4 @@ services:
     network_mode: "host"
     volumes:
       - /data/projects/moliy/docs/uploads:/app/database
+      - /data/projects/moliy/docs/uploads:/app/uploads
